@@ -798,6 +798,134 @@
             text-shadow: 0 0 6px var(--accent-glow);
         }
 
+        /* Achievements / Certifications */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            position: relative;
+            background-color: rgba(19, 28, 56, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem 2rem 2.25rem 2rem;
+            text-align: center;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #3b82f6);
+            opacity: 0.35;
+            transition: var(--transition);
+        }
+
+        /* Light sweep across the card on hover */
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -80%;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(16, 185, 129, 0.12), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.12);
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-card:hover::after {
+            left: 160%;
+            transition: left 0.9s ease;
+        }
+
+        .cert-icon {
+            width: 86px;
+            height: 86px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.05) 70%);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            animation: pulseGlow 3s infinite alternate, logoFloat 5s ease-in-out infinite alternate;
+            transition: var(--transition);
+        }
+
+        .cert-icon svg {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 0 6px var(--accent-glow));
+        }
+
+        .cert-card:hover .cert-icon {
+            transform: scale(1.12) rotate(-8deg);
+            color: #3b82f6;
+            border-color: #3b82f6;
+            box-shadow: 0 0 28px rgba(59, 130, 246, 0.5);
+        }
+
+        .cert-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            letter-spacing: 0.5px;
+        }
+
+        .cert-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: -0.3px;
+            margin-bottom: 1.25rem;
+        }
+
+        .cert-issuer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .cert-issuer span {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .cert-issuer strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
         /* Footer / Contact */
         .site-footer {
             background-color: #070d1d;
@@ -907,6 +1035,7 @@
                 <a href="#sobre-mi">About</a>
                 <a href="#proyectos">Projects</a>
                 <a href="#habilidades">Skills</a>
+                <a href="#logros">Achievements</a>
                 <a href="#contacto" class="btn-nav">Contact</a>
             </nav>
         </div>
@@ -1150,6 +1279,42 @@
             </div>
         </section>
 
+
+        <!-- 5. LOGROS (Achievements / Certifications) -->
+        <section id="logros" class="section achievements-section">
+            <div class="container">
+                <h2 class="section-title reveal">Achievements</h2>
+                <p class="section-subtitle reveal">Certifications that back my English and Excel skills.</p>
+
+                <div class="achievements-grid">
+                    <article class="cert-card reveal">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/></svg>
+                        </div>
+                        <span class="cert-label">Certification</span>
+                        <h3>TOEIC&reg; Listening and Reading Test</h3>
+                        <p class="cert-issuer"><span>Issued by</span><strong>Educational Testing Service (ETS)</strong></p>
+                    </article>
+                    <article class="cert-card reveal">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M3 15h18"/><path d="M9 4v16"/></svg>
+                        </div>
+                        <span class="cert-label">Certification</span>
+                        <h3>Microsoft Office Specialist: Excel Associate</h3>
+                        <p class="cert-issuer"><span>Issued by</span><strong>Microsoft</strong><br>Administered by Certiport</p>
+                    </article>
+                    <article class="cert-card reveal">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/><path d="m12 6 .9 1.9 2.1.3-1.5 1.5.4 2.1-1.9-1-1.9 1 .4-2.1L9 8.2l2.1-.3z"/></svg>
+                        </div>
+                        <span class="cert-label">Certification</span>
+                        <h3>Microsoft Office Specialist: Excel Expert</h3>
+                        <p class="cert-issuer"><span>Issued by</span><strong>Microsoft</strong><br>Administered by Certiport</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- 5. CONTACTO (Contact Footer) -->
@@ -1210,7 +1375,7 @@
                 cursorGlow.style.top = `${e.clientY}px`;
             });
 
-            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-category, .profile-img');
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-category, .cert-card, .profile-img');
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => cursorGlow.classList.add('hovered'));
                 el.addEventListener('mouseleave', () => cursorGlow.classList.remove('hovered'));
