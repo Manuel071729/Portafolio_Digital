@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel Pérez | Aspiring Industrial Engineer & Systems Innovator</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0b1329;
+            --bg-card: #131c38;
+            --bg-card-hover: #1a264a;
+            --accent-color: #10b981; /* Vibrant Mint Green */
+            --accent-glow: rgba(16, 185, 129, 0.3);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --border-glow: rgba(16, 185, 129, 0.5);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Interactive Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Custom Glowing Pointer Effect */
+        .cursor-glow {
+            width: 24px;
+            height: 24px;
+            background: rgba(16, 185, 129, 0.35);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out, width 0.25s ease, height 0.25s ease, background-color 0.25s ease;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .cursor-glow.hovered {
+            width: 48px;
+            height: 48px;
+            background: rgba(16, 185, 129, 0.15);
+            border-color: #3b82f6;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(11, 19, 41, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            text-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .btn-nav {
+            background-color: var(--accent-color);
+            color: #0b1329 !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px var(--accent-glow);
+        }
+
+        /* Hero Section with Animation */
+        .hero-section {
+            padding: 13rem 0 8rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+                        radial-gradient(circle at 10% 85%, rgba(30, 58, 138, 0.2) 0%, transparent 55%);
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-color);
+            padding: 0.5rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.1); }
+            100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.35); }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+            letter-spacing: -1px;
+        }
+
+        .role-subtitle {
+            font-size: 1.35rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1.25rem;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.05), transparent);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .btn {
+            padding: 0.85rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: #0b1329;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px var(--accent-glow);
+            filter: brightness(1.05);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background-color: rgba(16, 185, 129, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .hero-image-wrapper {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, var(--accent-color), #3b82f6);
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: floatGlow 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translateY(-10px) scale(0.95); }
+            100% { transform: translateY(10px) scale(1.05); }
+        }
+
+        .profile-img {
+            width: 310px;
+            height: 310px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+            border-color: #3b82f6;
+            box-shadow: 0 30px 60px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Sections General with Reveal Animation */
+        .section {
+            padding: 7rem 0;
+            position: relative;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-size: 1.15rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: rgba(19, 28, 56, 0.4);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, rgba(19, 28, 56, 0.9), rgba(11, 19, 41, 0.95));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+        }
+
+        .about-text p {
+            margin-bottom: 1.75rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: flex;
+            flex-direction: row;
+            gap: 2.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-padding-left: 0.5rem;
+            padding: 1.75rem 0.5rem 2.5rem 0.5rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .projects-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .projects-grid .project-card {
+            flex: 0 0 540px;
+            max-width: 88vw;
+            scroll-snap-align: start;
+        }
+
+        .projects-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 0.75rem;
+            margin: -2rem 0.5rem 0.5rem 0;
+        }
+
+        .projects-hint {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-right: auto;
+        }
+
+        .scroll-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--accent-color);
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .scroll-btn:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(16, 185, 129, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .project-card {
+            background-color: rgba(19, 28, 56, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #3b82f6);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0.35rem 0.85rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .project-content p {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .project-content strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Project header with animated logo */
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header .tech-tag {
+            margin-bottom: 0;
+        }
+
+        .project-logo {
+            flex-shrink: 0;
+            width: 110px;
+            animation: logoFloat 5s ease-in-out infinite alternate;
+            transition: var(--transition);
+        }
+
+        .project-logo.wide {
+            width: 230px;
+        }
+
+        .project-logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-logo {
+            transform: rotate(-4deg) scale(1.1);
+        }
+
+        .project-card:hover .project-logo img {
+            filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.7));
+            animation: none;
+        }
+
+        @keyframes logoFloat {
+            0% { margin-top: -4px; }
+            100% { margin-top: 6px; }
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.25)); }
+            100% { filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.65)); }
+        }
+
+        /* Live website preview with floating logo */
+        .site-preview {
+            display: block;
+            position: relative;
+            margin: 3rem 0 1.5rem 0;
+            text-decoration: none;
+        }
+
+        .preview-frame {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+            transition: var(--transition);
+        }
+
+        .site-preview:hover .preview-frame {
+            border-color: var(--border-glow);
+            box-shadow: 0 16px 38px rgba(16, 185, 129, 0.22);
+            transform: translateY(-3px);
+        }
+
+        .preview-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            height: 32px;
+            padding: 0 0.85rem;
+            background: rgba(11, 19, 41, 0.95);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .preview-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .preview-dots i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .preview-dots i:first-child {
+            background: var(--accent-color);
+            opacity: 1;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .preview-dots i:nth-child(2) {
+            background: #3b82f6;
+            opacity: 0.8;
+        }
+
+        .preview-url {
+            flex: 1;
+            max-width: 60%;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.05rem 0.7rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .preview-screen {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.18) 0%, transparent 50%),
+                        radial-gradient(circle at 15% 85%, rgba(59, 130, 246, 0.18) 0%, transparent 55%),
+                        var(--bg-card);
+        }
+
+        /* Shown behind the preview if the site cannot be displayed */
+        .preview-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-fallback img {
+            max-width: 45%;
+            max-height: 45%;
+            opacity: 0.3;
+        }
+
+        .preview-screen iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 800px;
+            border: 0;
+            background: #ffffff;
+            transform-origin: 0 0;
+            pointer-events: none;
+            transition: filter 0.4s ease;
+        }
+
+        .preview-cta {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11, 19, 41, 0.6);
+            backdrop-filter: blur(2px);
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-shadow: 0 0 12px var(--accent-glow);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .site-preview:hover .preview-cta {
+            opacity: 1;
+        }
+
+        .project-logo.preview-badge {
+            position: absolute;
+            top: -30px;
+            right: 18px;
+            z-index: 3;
+            width: 84px;
+        }
+
+        .project-logo.preview-badge.wide {
+            width: 160px;
+        }
+
+        @media (max-width: 560px) {
+            .project-header {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
+        }
+
+        /* Highlighted role / individual project note */
+        .project-content p.role-highlight {
+            color: var(--text-main);
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.03));
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-content p.role-highlight strong {
+            color: var(--accent-color);
+        }
+
+        .project-links {
+            margin-top: 2rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .project-links.stacked {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.85rem;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .link-btn:hover {
+            color: #3b82f6;
+            transform: translateX(6px);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background-color: rgba(19, 28, 56, 0.4);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: rgba(11, 19, 41, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-size: 0.98rem;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .skill-category li:hover {
+            color: var(--text-main);
+        }
+
+        .skill-category li::before {
+            content: '▪';
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            text-shadow: 0 0 6px var(--accent-glow);
+        }
+
+        /* Footer / Contact */
+        .site-footer {
+            background-color: #070d1d;
+            border-top: 1px solid var(--border-color);
+            padding: 6rem 0 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .footer-content p {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background-color: rgba(16, 185, 129, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+            
+            .hero-cta {
+                justify-content: center;
+            }
+            
+            .tagline {
+                border-left: none;
+                border-top: 3px solid var(--accent-color);
+                padding-left: 0;
+                padding-top: 1.25rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cursor-glow {
+                display: none; /* Hide custom cursor on touch screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Header / Navbar -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="#inicio" class="logo">Manuel Pérez<span>.</span></a>
+            <nav class="nav-links">
+                <a href="#inicio">Home</a>
+                <a href="#sobre-mi">About</a>
+                <a href="#proyectos">Projects</a>
+                <a href="#habilidades">Skills</a>
+                <a href="#contacto" class="btn-nav">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. INICIO (Hero Section) -->
+        <section id="inicio" class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge">Future Industrial Engineer & Technologist</span>
+                    <h1>Manuel Alexander Pérez Orellana</h1>
+                    <p class="role-subtitle">Industrial Engineering & Technological Systems Integration</p>
+                    <blockquote class="tagline">
+                        "Optimizing processes, merging industrial systems with modern technology, and building intelligent solutions for a connected future."
+                    </blockquote>
+                    <div class="hero-cta">
+                        <a href="#proyectos" class="btn primary-btn">View Projects</a>
+                        <a href="#contacto" class="btn secondary-btn">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="Usuario.jpeg" alt="Professional portrait of Manuel Pérez in formal attire" class="profile-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SOBRE MI (About Me) -->
+        <section id="sobre-mi" class="section about-section reveal">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">My origin, motivation, and vision for the future of technology.</p>
+                
+                <div class="about-card">
+                    <div class="about-text">
+                        <p>
+                            My fascination with technology started with a childhood memory: watching my father work on a computer. Out of pure curiosity and innocence, I asked him what he was doing. He smiled, turned to me, and explained that he was working with a new tool designed to revolutionize the world. From that moment on, he taught me the little he knew, leaving me completely fascinated and eager to discover how much more technology could achieve.
+                        </p>
+                        <p>
+                            However, my true turning point and deep love for computer science and computing came when I joined my scholarship program and faced my very first hackathon project. Working intensely through that challenge opened my eyes: I realized that technology, artificial intelligence, and modern tools are not just abstract concepts—they are tangible forces capable of making a real, meaningful impact on people's lives and reshaping the world.
+                        </p>
+                        <p>
+                            Today, driven by that mindset, my goal is to pursue <strong>Industrial Engineering</strong> in a world increasingly driven by technology. I want to merge industrial automation, process optimization, and smart systems to design efficient ecosystems where cutting-edge technology transforms real-world challenges into high-performance solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PROYECTOS (Featured Projects) -->
+        <section id="proyectos" class="section projects-section">
+            <div class="container">
+                <h2 class="section-title reveal">Featured Projects</h2>
+                <p class="section-subtitle reveal">Case studies showcasing technical execution, process thinking, and real-world utility.</p>
+                
+                <div class="projects-controls reveal">
+                    <span class="projects-hint">Scroll or use the arrows &rarr;</span>
+                    <button class="scroll-btn" id="proj-prev" aria-label="Previous project">&larr;</button>
+                    <button class="scroll-btn" id="proj-next" aria-label="Next project">&rarr;</button>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 2: EmprendeMap -->
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <h3>EmprendeMap</h3>
+                            <span class="tech-tag">Web Platform | Python | BeeWare (Toga)</span>
+                            <a href="https://cute-halva-ab0407.netlify.app" target="_blank" class="site-preview" aria-label="Open the EmprendeMap website">
+                                <div class="preview-frame">
+                                    <div class="preview-bar">
+                                        <span class="preview-dots"><i></i><i></i><i></i></span>
+                                        <span class="preview-url">cute-halva-ab0407.netlify.app</span>
+                                    </div>
+                                    <div class="preview-screen">
+                                        <div class="preview-fallback"><img src="emprendemap.png" alt=""></div>
+                                        <iframe src="https://cute-halva-ab0407.netlify.app" title="Live preview of the EmprendeMap website" loading="lazy" tabindex="-1" scrolling="no"></iframe>
+                                        <span class="preview-cta">Open live website &#8599;</span>
+                                    </div>
+                                </div>
+                                <div class="project-logo preview-badge wide">
+                                    <img src="emprendemap.png" alt="EmprendeMap logo: an orange map pin with a dollar sign">
+                                </div>
+                            </a>
+                            <p class="role-highlight"><strong>My Role:</strong> Lead developer. I was in charge of most of the code in my part of the project, built in Python with the BeeWare (Toga) framework, and I implemented features and found and fixed the issues that came up in the code.</p>
+                            <p><strong>Problem:</strong> Local entrepreneurs struggle to find suitable commercial spaces, while property owners and landlords lack an efficient channel to advertise vacant locations.</p>
+                            <p><strong>Process:</strong> Conceptualized a digital platform to bridge this gap, integrating a web interface alongside a custom Python desktop companion application built with the BeeWare (Toga) framework to manage data and interactions.</p>
+                            <p><strong>Solution:</strong> A multi-component solution connecting local entrepreneurs directly with property owners and landlords for efficient space discovery and management.</p>
+                            <p><strong>Result:</strong> Simplified commercial space discovery, reducing search friction and empowering small business ventures.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Manuel071729" target="_blank" class="link-btn">View GitHub Repo &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Project 4: Individual Project (EcoConducta) -->
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <h3>EcoConducta</h3>
+                            <span class="tech-tag">Website | HTML | CSS</span>
+                            <a href="ecoconducta/index.html#hero" target="_blank" class="site-preview" aria-label="Open the EcoConducta website">
+                                <div class="preview-frame">
+                                    <div class="preview-bar">
+                                        <span class="preview-dots"><i></i><i></i><i></i></span>
+                                        <span class="preview-url">EcoConducta Website</span>
+                                    </div>
+                                    <div class="preview-screen">
+                                        <div class="preview-fallback"><img src="ecoconducta.png" alt=""></div>
+                                        <iframe src="ecoconducta/index.html#hero" title="Live preview of the EcoConducta website" loading="lazy" tabindex="-1" scrolling="no"></iframe>
+                                        <span class="preview-cta">Open live website &#8599;</span>
+                                    </div>
+                                </div>
+                                <div class="project-logo preview-badge">
+                                    <img src="ecoconducta.png" alt="EcoConducta logo: a green brain inside a rounded square">
+                                </div>
+                            </a>
+                            <p class="role-highlight"><strong>Individual Project</strong></p>
+                            <p><strong>Problem:</strong> Guidance on social conduct and on building a responsible life plan is often scattered, abstract, or hard to follow, which makes it difficult for people to reflect on their behavior and set clear goals.</p>
+                            <p><strong>Process:</strong> Designed and built a website from scratch using HTML for the structure and CSS for the styling. Organized the content into clear sections, starting with a hero introduction, and kept a consistent, readable visual layout throughout the page.</p>
+                            <p><strong>Solution:</strong> A web page about social conduct and life planning that presents its ideas in an organized, easy-to-read format, accessible from any browser without installing anything.</p>
+                            <p><strong>Result:</strong> A complete, individually developed website that demonstrates applied web structuring and design skills, turning an important topic into a clear and approachable resource.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Manuel071729" target="_blank" class="link-btn">View GitHub Repo &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Project 5: EcoScan -->
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <h3>EcoScan</h3>
+                            <span class="tech-tag">Teachable Machine | TensorFlow.js | HTML, CSS & JavaScript</span>
+                            <a href="ecoscan/index.html" target="_blank" class="site-preview" aria-label="Open the EcoScan website">
+                                <div class="preview-frame">
+                                    <div class="preview-bar">
+                                        <span class="preview-dots"><i></i><i></i><i></i></span>
+                                        <span class="preview-url">EcoScan Website</span>
+                                    </div>
+                                    <div class="preview-screen">
+                                        <div class="preview-fallback"><img src="ecoscan.png" alt=""></div>
+                                        <iframe src="ecoscan/index.html" title="Live preview of the EcoScan website" loading="lazy" tabindex="-1" scrolling="no"></iframe>
+                                        <span class="preview-cta">Open live website &#8599;</span>
+                                    </div>
+                                </div>
+                                <div class="project-logo preview-badge wide">
+                                    <img src="ecoscan.png" alt="EcoScan logo: a green recycling symbol next to the name EcoScan">
+                                </div>
+                            </a>
+                            <p class="role-highlight"><strong>My Role:</strong> Model training. My main role was implementing and training the EcoScan classification model in Teachable Machine, and preparing it so it was ready for testing.</p>
+                            <p><strong>Problem:</strong> Many people are unsure whether an object can be recycled, which leads to recyclable materials being thrown away and non-recyclable ones contaminating the recycling bin.</p>
+                            <p><strong>Process:</strong> Trained an image classification model with Google Teachable Machine on six classes (cardboard, plastic, glass, paper, metal, and non-recyclable). Built a web interface that accesses the webcam, runs the model directly in the browser with TensorFlow.js, and applies an 80% confidence threshold so the system does not give an answer when it is unsure.</p>
+                            <p><strong>Solution:</strong> A web app that analyzes objects in real time through the camera, shows the detected material with its confidence level and a probability bar per class, and offers a recommendation on what to do with it.</p>
+                            <p><strong>Result:</strong> A working AI-powered tool that helps users make more responsible recycling decisions, demonstrating applied machine learning and interface design.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Manuel071729" target="_blank" class="link-btn">View GitHub Repo &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Project 1: Arduino Optical Counter -->
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <h3>Arduino Optical Counter System</h3>
+                            <span class="tech-tag">Arduino UNO | C++ | LDR Sensors</span>
+                            <p class="role-highlight"><strong>My Role:</strong> Code developer. My main contribution was writing the Arduino code, and I also verified that our breadboard circuit and LEDs worked correctly.</p>
+                            <p><strong>Problem:</strong> Need for a reliable, automated access control mechanism to track entries and exits without manual supervision.</p>
+                            <p><strong>Process:</strong> Designed an electronic circuit on a breadboard using an LDR light sensor, LEDs, and an Arduino UNO microcontroller. Implemented real-time ambient light calibration to minimize sensor false positives.</p>
+                            <p><strong>Solution:</strong> A microcontroller-based hardware counter that accurately registers interruptions in the light beam, providing visual feedback via LEDs.</p>
+                            <p><strong>Result:</strong> Achieved stable automated counting with robust environmental light adjustment, demonstrating applied hardware prototyping skills.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Manuel071729" target="_blank" class="link-btn">View GitHub Repo &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Project 3: MedPlan -->
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-title">
+                                    <h3>MedPlan</h3>
+                                    <span class="tech-tag">Power Platform | Microsoft Ecosystem | Copilot Studio</span>
+                                </div>
+                                <div class="project-logo">
+                                    <img src="medplan.png" alt="MedPlan logo: a heart with a medical cross inside a clock">
+                                </div>
+                            </div>
+                            <p class="role-highlight"><strong>My Role:</strong> Code and troubleshooting. I worked extensively on the code within Power Apps, mainly solving the problems and errors that appeared during development.</p>
+                            <p><strong>Problem:</strong> Patients frequently forget medical appointments, resulting in missed treatments and disorganization in personal health schedules.</p>
+                            <p><strong>Process:</strong> Collaborated in a team (alongside Xiomara Ramírez, Alisson Rivas, and Alexandra García) to architect an automated medical appointment management system leveraging Microsoft tools. Integrated Power Apps for cross-device accessibility, SharePoint for secure data storage, Power Automate for smart reminders, Outlook Calendar synchronization, and Copilot Studio for an AI assistant ("Medi") providing instant real-time guidance.</p>
+                            <p><strong>Solution:</strong> A comprehensive cross-platform app featuring appointment booking, interactive private clinic directories with integrated mapping routes, reviews, automatic alert notifications, and a conversational chatbot assistant.</p>
+                            <p><strong>Result:</strong> Delivered a fully connected user experience that eliminates missed appointments through automated reminders and centralized scheduling.</p>
+                            <div class="project-links">
+                                <a href="https://apps.powerapps.com/play/e/default-d8e3bd44-0bba-426b-952d-ada7bb17393c/a/f48c0444-3149-4f02-b476-45483d85ec46?tenantId=d8e3bd44-0bba-426b-952d-ada7bb17393c&amp;sourcetime=1794325576840" target="_blank" class="link-btn">View MedPlan Live App &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. HABILIDADES (Skills) -->
+        <section id="habilidades" class="section skills-section">
+            <div class="container">
+                <h2 class="section-title reveal">Verified Skills</h2>
+                <p class="section-subtitle reveal">Core competencies backed directly by hands-on project execution.</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-category reveal">
+                        <h3>Programming Languages</h3>
+                        <ul>
+                            <li>Python (Core Development & Agile Logic)</li>
+                            <li>HTML & CSS (Basics)</li>
+                            <li>JavaScript (Basics)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category reveal">
+                        <h3>Hardware & Prototyping</h3>
+                        <ul>
+                            <li>Arduino UNO Microcontroller Programming (Basics)</li>
+                            <li>Breadboard Circuit Assembly (Basics)</li>
+                            <li>LDR Sensors & LED Integration (Basics)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category reveal">
+                        <h3>Tools & Frameworks</h3>
+                        <ul>
+                            <li>Visual Studio Code</li>
+                            <li>Git & GitHub Version Control</li>
+                            <li>BeeWare (Toga GUI Framework)</li>
+                            <li>Canva (Visual Layouts)</li>
+                            <li>Microsoft Excel</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category reveal">
+                        <h3>Core Competencies</h3>
+                        <ul>
+                            <li>Process Optimization & Critical Analysis</li>
+                            <li>System Troubleshooting</li>
+                            <li>Technical Communication & Team Collaboration</li>
+                            <li>English (Intermediate Level)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 5. CONTACTO (Contact Footer) -->
+    <footer id="contacto" class="site-footer">
+        <div class="container footer-content reveal">
+            <h2>Let's Connect</h2>
+            <p>I am open to academic opportunities, engineering collaborations, and professional networking.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:manuelperez71729@gmail.com" class="contact-btn">Email Me</a>
+                <a href="https://www.linkedin.com/in/manuel-perez-2b348840b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="contact-btn">LinkedIn Profile</a>
+                <a href="https://github.com/Manuel071729" target="_blank" class="contact-btn">GitHub Repository</a>
+            </div>
+            
+            <p class="copyright">&copy; 2026 Manuel Alexander Pérez Orellana. Built with HTML, CSS, and JavaScript.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Portfolio loaded successfully. Welcome to Manuel Pérez's digital portfolio.");
+
+            // 1. Smooth Scrolling for Navigation
+            const internalLinks = document.querySelectorAll('a[href^="#"]');
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 2. Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const revealPoint = 120;
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // 3. Custom Glowing Pointer Tracking
+            const cursorGlow = document.getElementById('cursor-glow');
+            window.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = `${e.clientX}px`;
+                cursorGlow.style.top = `${e.clientY}px`;
+            });
+
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-category, .profile-img');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorGlow.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursorGlow.classList.remove('hovered'));
+            });
+
+            // 3b. Fit website previews (1280px wide pages) into their frames
+            const fitPreviews = () => {
+                document.querySelectorAll('.preview-screen').forEach(screen => {
+                    const frame = screen.querySelector('iframe');
+                    if (frame) frame.style.transform = `scale(${screen.clientWidth / 1280})`;
+                });
+            };
+            window.addEventListener('resize', fitPreviews);
+            fitPreviews();
+
+            // 3c. Horizontal projects scroller controls
+            const projectsRow = document.querySelector('.projects-grid');
+            const scrollProjects = (dir) => {
+                const card = projectsRow.querySelector('.project-card');
+                const step = card.getBoundingClientRect().width + 40;
+                projectsRow.scrollBy({ left: dir * step, behavior: 'smooth' });
+            };
+            document.getElementById('proj-prev').addEventListener('click', () => scrollProjects(-1));
+            document.getElementById('proj-next').addEventListener('click', () => scrollProjects(1));
+
+            // 4. Tech Neural Network Background Canvas
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            const resizeCanvas = () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            };
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const particles = [];
+            const particleCount = Math.floor(window.innerWidth / 20); // Dynamic count based on screen size
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.6;
+                    this.vy = (Math.random() - 0.5) * 0.6;
+                    this.radius = Math.random() * 2 + 1;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(16, 185, 129, 0.4)';
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            const animateBackground = () => {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 * (1 - distance / 130)})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateBackground);
+            };
+
+            animateBackground();
+        });
+    </script>
+</body>
+</html>

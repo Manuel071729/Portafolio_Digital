@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Individual: Conducta Social & Plan de Vida</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0d1117',
+                        cardBg: '#161b22',
+                        accentGreen: '#2ea043',
+                        accentHover: '#3fb950',
+                        borderDark: '#30363d',
+                        textMain: '#c9d1d9',
+                        textHeader: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Segoe UI', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #2ea043;
+        }
+        .glass-header {
+            background: rgba(22, 27, 34, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="custom-scrollbar min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-header border-b border-borderDark transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-accentGreen/20 border border-accentGreen flex items-center justify-center text-accentHover font-bold text-xl">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                    <span class="text-white font-bold text-lg block leading-tight">EcoConducta</span>
+                    <span class="text-xs text-gray-400 block">Plan de Vida & Desarrollo Social</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#hero" class="hover:text-accentHover transition-colors">Inicio</a>
+                <a href="#pilares" class="hover:text-accentHover transition-colors">Pilares</a>
+                <a href="#autoevaluacion" class="hover:text-accentHover transition-colors">Diagnóstico</a>
+                <a href="#simulador" class="hover:text-accentHover transition-colors">Simulador Ético</a>
+                <a href="#matriz" class="hover:text-accentHover transition-colors">Matriz de Objetivos</a>
+                <a href="#bitacora" class="hover:text-accentHover transition-colors">Bitácora</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-3">
+                <a href="#autoevaluacion" class="bg-accentGreen hover:bg-accentHover text-white px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-accentGreen/20">
+                    Evaluar Conducta
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-accentGreen/10 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-600/10 rounded-full filter blur-3xl pointer-events-none"></div>
+
+            <div class="text-center max-w-3xl mx-auto space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accentGreen/10 border border-accentGreen/30 text-accentHover text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-seedling"></i> Estudiante de Alto Rendimiento & Vocación Ética
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Proyecto Individual: <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentGreen via-emerald-400 to-teal-300">
+                        Conducta Social & Plan de Vida
+                    </span>
+                </h1>
+                <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                    Un espacio estratégico enfocado en armonizar el rigor técnico y la excelencia académica con una sólida inteligencia social adaptativa, empatía comunitaria y principios de liderazgo ético.
+                </p>
+
+                <!-- Indicadores Rápidos -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
+                    <div class="p-4 rounded-xl bg-cardBg border border-borderDark text-left hover:border-accentGreen/50 transition-all">
+                        <div class="text-accentHover text-2xl mb-2"><i class="fa-solid fa-sliders"></i></div>
+                        <h4 class="text-white font-bold text-sm">Adaptabilidad Social</h4>
+                        <p class="text-xs text-gray-400 mt-1">Sincronía entre introspección técnica y liderazgo de equipo.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-cardBg border border-borderDark text-left hover:border-accentGreen/50 transition-all">
+                        <div class="text-accentHover text-2xl mb-2"><i class="fa-solid fa-comments"></i></div>
+                        <h4 class="text-white font-bold text-sm">Asertividad Directa</h4>
+                        <p class="text-xs text-gray-400 mt-1">Comunicación transparente, objetiva y empática.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-cardBg border border-borderDark text-left hover:border-accentGreen/50 transition-all">
+                        <div class="text-accentHover text-2xl mb-2"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                        <h4 class="text-white font-bold text-sm">Servicio Comunitario</h4>
+                        <p class="text-xs text-gray-400 mt-1">Orientación al bienestar común e impacto positivo real.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion Pilares de Conducta Social -->
+        <section id="pilares" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-borderDark">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Pilares de Conducta Social</h2>
+                <p class="text-sm text-gray-400 mt-2">Fundamentos actitudinales para el desarrollo integral y la convivencia comunitaria</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pilar 1 -->
+                <div class="bg-cardBg border border-borderDark rounded-xl p-6 flex flex-col justify-between hover:border-accentGreen transition-all group">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-accentGreen/10 flex items-center justify-center text-accentHover text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Comunicación Asertiva</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Valor por la verdad franca y oportuna. Capacidad de retroalimentar respetando la dignidad de las personas sin rodeos innecesarios.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-borderDark/50 flex justify-between items-center text-xs text-accentHover font-semibold">
+                        <span>Autenticidad Ética</span>
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="bg-cardBg border border-borderDark rounded-xl p-6 flex flex-col justify-between hover:border-accentGreen transition-all group">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-accentGreen/10 flex items-center justify-center text-accentHover text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shuffle"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Inteligencia Adaptativa</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Transición eficiente entre el trabajo individual en modo de alta concentración y el liderazgo colaborativo extrovertido.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-borderDark/50 flex justify-between items-center text-xs text-accentHover font-semibold">
+                        <span>Flexibilidad Conductual</span>
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="bg-cardBg border border-borderDark rounded-xl p-6 flex flex-col justify-between hover:border-accentGreen transition-all group">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-accentGreen/10 flex items-center justify-center text-accentHover text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Humildad & Empatía</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Vocación de servicio puesta a disposición de la comunidad. Escucha activa ante las necesidades y contextos del entorno social.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-borderDark/50 flex justify-between items-center text-xs text-accentHover font-semibold">
+                        <span>Vocación Humana</span>
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Pilar 4 -->
+                <div class="bg-cardBg border border-borderDark rounded-xl p-6 flex flex-col justify-between hover:border-accentGreen transition-all group">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-accentGreen/10 flex items-center justify-center text-accentHover text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Orientación a Resultados</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Constancia, autodisciplina y búsqueda de la excelencia técnica sin descuidar el equilibrio personal ni el respeto ético.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-borderDark/50 flex justify-between items-center text-xs text-accentHover font-semibold">
+                        <span>Sostenibilidad Personal</span>
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagnóstico / Autoevaluación Interactiva -->
+        <section id="autoevaluacion" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-borderDark">
+            <div class="max-w-4xl mx-auto bg-cardBg border border-borderDark rounded-2xl p-6 sm:p-8 shadow-2xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-check text-accentHover"></i>
+                            Autoevaluación de Conducta Social
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">Responde honestamente para calcular tus métricas de competencia social.</p>
+                    </div>
+                    <span class="text-xs bg-accentGreen/10 text-accentHover border border-accentGreen/30 px-3 py-1.5 rounded-full font-semibold self-start sm:self-auto">
+                        Cuestionario Interactivo
+                    </span>
+                </div>
+
+                <!-- Cuestionario Form -->
+                <form id="quizForm" class="space-y-6">
+                    <!-- Pregunta 1 -->
+                    <div class="bg-darkBg/60 p-4 rounded-xl border border-borderDark">
+                        <label class="block text-sm font-semibold text-white mb-2">
+                            1. ¿Con qué soltura alternas entre sesiones de concentración profunda y colaboración grupal activa?
+                        </label>
+                        <select name="q1" class="w-full bg-cardBg border border-borderDark rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-accentGreen">
+                            <option value="4">Excelente: Me adapto de inmediato al entorno e interactúo sin desgaste.</option>
+                            <option value="3">Bueno: Lo logro bien con una breve transición mental.</option>
+                            <option value="2">Moderado: Prefiero mantenerme en una sola modalidad.</option>
+                            <option value="1">Básico: Me cuesta alternar sin perder energía o foco.</option>
+                        </select>
+                    </div>
+
+                    <!-- Pregunta 2 -->
+                    <div class="bg-darkBg/60 p-4 rounded-xl border border-borderDark">
+                        <label class="block text-sm font-semibold text-white mb-2">
+                            2. Ante una discrepancia o error en el equipo, ¿cómo comunicas tu postura?
+                        </label>
+                        <select name="q2" class="w-full bg-cardBg border border-borderDark rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-accentGreen">
+                            <option value="4">Asertiva y objetiva: Digo la verdad con respeto y aporto soluciones.</option>
+                            <option value="3">Directa: Priorizo el resultado sobre las formas.</option>
+                            <option value="2">Pasiva: Evito confrontar y espero a que se resuelva solo.</option>
+                            <option value="1">Reactiva: Muestro molestia si las cosas no marchan bien.</option>
+                        </select>
+                    </div>
+
+                    <!-- Pregunta 3 -->
+                    <div class="bg-darkBg/60 p-4 rounded-xl border border-borderDark">
+                        <label class="block text-sm font-semibold text-white mb-2">
+                            3. ¿Qué nivel de involucramiento mantienes en actividades de beneficio social o ambiental?
+                        </label>
+                        <select name="q3" class="w-full bg-cardBg border border-borderDark rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-accentGreen">
+                            <option value="4">Alto: Lidero o participo activamente en voluntariados e iniciativas.</option>
+                            <option value="3">Moderado: Apoyo cuando se presentan oportunidades claras.</option>
+                            <option value="2">Bajo: Tengo intención pero poco tiempo efectivo.</option>
+                            <option value="1">Nulo: Actualmente enfocado solo en metas individuales.</option>
+                        </select>
+                    </div>
+
+                    <!-- Pregunta 4 -->
+                    <div class="bg-darkBg/60 p-4 rounded-xl border border-borderDark">
+                        <label class="block text-sm font-semibold text-white mb-2">
+                            4. ¿Cómo respondes frente a la retroalimentación constructiva sobre tus hábitos?
+                        </label>
+                        <select name="q4" class="w-full bg-cardBg border border-borderDark rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-accentGreen">
+                            <option value="4">Agradecido: Realizo autoevaluación e implemento mejoras.</option>
+                            <option value="3">Neutral: Analizo la información antes de decidir actuar.</option>
+                            <option value="2">Defensivo: Justifico mis motivos en primera instancia.</option>
+                            <option value="1">Resistente: Desestimo comentarios ajenos.</option>
+                        </select>
+                    </div>
+
+                    <button type="button" onclick="calcularEvaluacion()" class="w-full bg-accentGreen hover:bg-accentHover text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-accentGreen/20 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Obtener Mi Perfil Social
+                    </button>
+                </form>
+
+                <!-- Panel de Resultados -->
+                <div id="resultadoQuiz" class="hidden mt-8 pt-8 border-t border-borderDark space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-accentHover"></i> Resultados del Diagnóstico
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-darkBg p-4 rounded-xl border border-borderDark">
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Adaptabilidad & Liderazgo</span>
+                                <span id="bar1Val">0%</span>
+                            </div>
+                            <div class="w-full bg-cardBg rounded-full h-2.5 overflow-hidden border border-borderDark">
+                                <div id="bar1" class="bg-accentGreen h-2.5 rounded-full transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-darkBg p-4 rounded-xl border border-borderDark">
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Asertividad & Transparencia</span>
+                                <span id="bar2Val">0%</span>
+                            </div>
+                            <div class="w-full bg-cardBg rounded-full h-2.5 overflow-hidden border border-borderDark">
+                                <div id="bar2" class="bg-emerald-400 h-2.5 rounded-full transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="perfilDesc" class="p-4 rounded-xl bg-accentGreen/10 border border-accentGreen/30 text-xs sm:text-sm text-gray-200">
+                        <!-- Texto dinámico generado con JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulador de Casos Prácticos Éti-Sociales -->
+        <section id="simulador" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-borderDark">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Simulador de Decisiones Éticas</h2>
+                <p class="text-sm text-gray-400 mt-2">Pone a prueba tu criterio y empatía ante situaciones dilemáticas reales</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-cardBg border border-borderDark rounded-2xl p-6 sm:p-8">
+                <div class="flex items-center justify-between mb-4">
+                    <span id="casoNum" class="text-xs text-accentHover font-semibold uppercase tracking-wider">Caso 1 de 3</span>
+                    <span class="text-xs text-gray-400"><i class="fa-solid fa-gamepad"></i> Interactividad en tiempo real</span>
+                </div>
+
+                <div id="contenedorCaso" class="space-y-6">
+                    <!-- Dinámico por JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Matriz de Objetivos de Vida -->
+        <section id="matriz" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-borderDark">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Matriz de Objetivos & Compromiso</h2>
+                <p class="text-sm text-gray-400 mt-2">Estrategia temporal de crecimiento técnico, académico y comunitario</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="flex justify-center gap-2 mb-8 flex-wrap">
+                <button onclick="filtrarObjetivos('todos')" class="filter-btn active bg-accentGreen text-white px-4 py-2 rounded-lg text-xs font-semibold transition-all">Todos</button>
+                <button onclick="filtrarObjetivos('corto')" class="filter-btn bg-cardBg hover:bg-borderDark text-gray-300 px-4 py-2 rounded-lg text-xs font-semibold transition-all">Corto Plazo</button>
+                <button onclick="filtrarObjetivos('mediano')" class="filter-btn bg-cardBg hover:bg-borderDark text-gray-300 px-4 py-2 rounded-lg text-xs font-semibold transition-all">Mediano Plazo</button>
+                <button onclick="filtrarObjetivos('largo')" class="filter-btn bg-cardBg hover:bg-borderDark text-gray-300 px-4 py-2 rounded-lg text-xs font-semibold transition-all">Largo Plazo</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="contenedorObjetivos">
+                <!-- Meta 1 -->
+                <div class="obj-card corto bg-cardBg border border-borderDark rounded-xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-accentHover bg-accentGreen/10 px-2.5 py-1 rounded-full border border-accentGreen/30">Corto Plazo</span>
+                        <i class="fa-solid fa-graduation-cap text-gray-400"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Excelencia Académica Técnica</h4>
+                    <p class="text-xs text-gray-300">Mantener promedios sobresalientes en materias de ingeniería mientras participo activamente en tutorías entre pares.</p>
+                </div>
+
+                <!-- Meta 2 -->
+                <div class="obj-card corto bg-cardBg border border-borderDark rounded-xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-accentHover bg-accentGreen/10 px-2.5 py-1 rounded-full border border-accentGreen/30">Corto Plazo</span>
+                        <i class="fa-solid fa-tree text-gray-400"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Integración a Voluntariado EcoScan</h4>
+                    <p class="text-xs text-gray-300">Aplicar conocimientos tecnológicos en iniciativas locales de monitoreo ambiental y educación comunitaria.</p>
+                </div>
+
+                <!-- Meta 3 -->
+                <div class="obj-card mediano bg-cardBg border border-borderDark rounded-xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/30">Mediano Plazo</span>
+                        <i class="fa-solid fa-users-gear text-gray-400"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Liderazgo de Proyectos Comunitarios</h4>
+                    <p class="text-xs text-gray-300">Coordinar equipos multidisciplinarios combinando metodología ágil y empatía con las necesidades locales.</p>
+                </div>
+
+                <!-- Meta 4 -->
+                <div class="obj-card mediano bg-cardBg border border-borderDark rounded-xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/30">Mediano Plazo</span>
+                        <i class="fa-solid fa-certificate text-gray-400"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Certificación en Soft Skills & Ética</h4>
+                    <p class="text-xs text-gray-300">Formalizar capacitaciones en inteligencia emocional, resolución de conflictos y gestión transparente.</p>
+                </div>
+
+                <!-- Meta 5 -->
+                <div class="obj-card largo bg-cardBg border border-borderDark rounded-xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-teal-300 bg-teal-300/10 px-2.5 py-1 rounded-full border border-teal-300/30">Largo Plazo</span>
+                        <i class="fa-solid fa-earth-americas text-gray-400"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Fundación de Soluciones Sostenibles</h4>
+                    <p class="text-xs text-gray-300">Consolidar una empresa o emprendimiento social de alto impacto tecnológico respetando estándares ambientales estrictos.</p>
+                </div>
+
+                <!-- Meta 6 -->
+                <div class="obj-card largo bg-cardBg border border-borderDark rounded-xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-teal-300 bg-teal-300/10 px-2.5 py-1 rounded-full border border-teal-300/30">Largo Plazo</span>
+                        <i class="fa-solid fa-hand-holding-hand text-gray-400"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Mentoría de Nuevos Talentos</h4>
+                    <p class="text-xs text-gray-300">Devolver a la sociedad guiando a jóvenes estudiantes de escasos recursos en sus trayectorias profesionales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bitácora & Registro de Compromisos (LocalStorage) -->
+        <section id="bitacora" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-borderDark">
+            <div class="max-w-4xl mx-auto bg-cardBg border border-borderDark rounded-2xl p-6 sm:p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-journal-whills text-accentHover"></i> Bitácora de Compromiso Personal
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">Registra tus reflexiones diarias y acuerdos contigo mismo (Almacenamiento Local).</p>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <form id="bitacoraForm" class="space-y-4 mb-8">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Título del Compromiso / Reflexión</label>
+                        <input type="text" id="titCompromiso" placeholder="Ej. Escucha activa en el trabajo de grupo" class="w-full bg-darkBg border border-borderDark rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-accentGreen" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Descripción / Plan de Acción</label>
+                        <textarea id="descCompromiso" rows="3" placeholder="¿Qué acción concreta llevarás a cabo hoy para sostener este principio?" class="w-full bg-darkBg border border-borderDark rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-accentGreen" required></textarea>
+                    </div>
+                    <button type="submit" class="bg-accentGreen hover:bg-accentHover text-white px-5 py-2.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md shadow-accentGreen/20 flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Guardar en mi Bitácora
+                    </button>
+                </form>
+
+                <!-- Lista de Entradas -->
+                <div class="space-y-3">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider text-gray-400">Tus Notas Registradas</h3>
+                    <div id="listaCompromisos" class="space-y-3">
+                        <!-- Dinámico con JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-borderDark bg-cardBg py-8 px-4 text-center text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="text-white font-semibold">Proyecto Individual: Conducta Social & Plan de Vida</p>
+                <p class="text-gray-500 mt-0.5">Diseñado con principios de desarrollo ético y responsabilidad social.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#hero" class="hover:text-accentHover transition-colors"><i class="fa-solid fa-arrow-up"></i> Volver Arriba</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // === QUIZ / AUTOEVALUACIÓN ===
+        function calcularEvaluacion() {
+            const form = document.getElementById('quizForm');
+            const q1 = parseInt(form.q1.value);
+            const q2 = parseInt(form.q2.value);
+            const q3 = parseInt(form.q3.value);
+            const q4 = parseInt(form.q4.value);
+
+            const scoreAdaptabilidad = ((q1 + q4) / 8) * 100;
+            const scoreAsertividad = ((q2 + q3) / 8) * 100;
+
+            document.getElementById('resultadoQuiz').classList.remove('hidden');
+            
+            document.getElementById('bar1').style.width = scoreAdaptabilidad + '%';
+            document.getElementById('bar1Val').innerText = Math.round(scoreAdaptabilidad) + '%';
+            
+            document.getElementById('bar2').style.width = scoreAsertividad + '%';
+            document.getElementById('bar2Val').innerText = Math.round(scoreAsertividad) + '%';
+
+            const desc = document.getElementById('perfilDesc');
+            const avg = (scoreAdaptabilidad + scoreAsertividad) / 2;
+
+            if(avg >= 85) {
+                desc.innerHTML = `<strong>Perfil: Liderazgo Social Sobresaliente.</strong> Demuestras un alto equilibrio entre el rigor individual y la empatía colectiva. Tu asertividad te permite construir entornos de alta confianza.`;
+            } else if(avg >= 60) {
+                desc.innerHTML = `<strong>Perfil: Desarrollo Sólido en Progresión.</strong> Tienes claros tus valores éticos y tu capacidad adaptativa. Continuar fortaleciendo el voluntariado consolidará tu perfil de servicio.`;
+            } else {
+                desc.innerHTML = `<strong>Perfil: En Etapa Inicial de Enfoque Social.</strong> Cuentas con base técnica, pero es recomendable practicar mayor comunicación asertiva e involucrarte en iniciativas comunitarias.`;
+            }
+        }
+
+        // === SIMULADOR DE CASOS ===
+        const casos = [
+            {
+                titulo: "Dilema de Entregable Grupal",
+                contexto: "Un miembro del equipo no entregó su parte técnica por problemas personales, afectando el avance general antes de la fecha límite.",
+                opciones: [
+                    { texto: "Asumir la carga en silencio para salvar la nota.", impacto: "Bajo en asertividad. Riego de sobrecarga personal sin resolver la raíz del problema.", score: 2 },
+                    { texto: "Comunicar con franqueza la situación al docente y ofrecer apoyo al compañero para reprogramar su parte.", impacto: "Excelente asertividad y empatía. Resuelve el compromiso con transparencia y apoyo social.", score: 5 },
+                    { texto: "Excluir de inmediato al integrante del equipo sin dialogar.", impacto: "Deficiencia empática. Prioriza el resultado sin considerar el contexto humano.", score: 1 }
+                ]
+            },
+            {
+                titulo: "Retorno a la Comunidad",
+                contexto: "Se te presenta la opción de participar en un proyecto ambiental voluntario los fines de semana o usar ese tiempo exclusivamente para entretenimiento personal.",
+                opciones: [
+                    { texto: "Integrarte al proyecto aportando tus destrezas técnicas.", impacto: "Alto compromiso social. Consolida tu perfil de liderazgo de servicio.", score: 5 },
+                    { texto: "Asistir ocasionalmente solo si no interfiere con tu descanso.", impacto: "Compromiso moderado. Equilibrio básico pero pasivo.", score: 3 },
+                    { texto: "Desestimar la invitación por considerar que no trae beneficio económico directo.", impacto: "Visión individualista. Poca orientación al bienestar colectivo.", score: 1 }
+                ]
+            },
+            {
+                titulo: "Retroalimentación Difícil",
+                contexto: "Notas que un compañero de proyecto comete errores repetitivos por no seguir los lineamientos de calidad acordados.",
+                opciones: [
+                    { texto: "Hablar en privado, de forma clara, directa y fundamentada sobre los errores para ayudarle a mejorar.", impacto: "Comunicación asertiva óptima. Fosters crecimiento sin humillación.", score: 5 },
+                    { texto: "Evidenciar sus fallas públicamente en el chat grupal para presionar.", impacto: "Asertividad agresiva. Daña el clima emocional y el respeto en el equipo.", score: 1 },
+                    { texto: "Corregir sus errores tú mismo sin decirle nada.", impacto: "Poco pedagógico. Impide que la otra persona aprenda y desarrolle autoliderazgo.", score: 2 }
+                ]
+            }
+        ];
+
+        let casoIndex = 0;
+
+        function cargarCaso() {
+            const container = document.getElementById('contenedorCaso');
+            const c = casos[casoIndex];
+            document.getElementById('casoNum').innerText = `Caso ${casoIndex + 1} de ${casos.length}`;
+
+            let html = `
+                <div class="bg-darkBg/60 p-4 sm:p-5 rounded-xl border border-borderDark space-y-2">
+                    <h3 class="text-base font-bold text-white">${c.titulo}</h3>
+                    <p class="text-xs sm:text-sm text-gray-300">${c.contexto}</p>
+                </div>
+                <div class="space-y-3">
+            `;
+
+            c.opciones.forEach((opc, idx) => {
+                html += `
+                    <button onclick="seleccionarOpcion(${idx})" class="w-full text-left bg-darkBg hover:bg-borderDark/60 border border-borderDark p-4 rounded-xl transition-all group">
+                        <div class="text-xs font-semibold text-white group-hover:text-accentHover">${opc.texto}</div>
+                    </button>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function seleccionarOpcion(opcIdx) {
+            const c = casos[casoIndex];
+            const opc = c.opciones[opcIdx];
+            const container = document.getElementById('contenedorCaso');
+
+            container.innerHTML = `
+                <div class="bg-darkBg/60 p-5 rounded-xl border border-borderDark space-y-4">
+                    <h3 class="text-base font-bold text-white">Análisis de Tu Elección</h3>
+                    <div class="p-3.5 rounded-lg bg-accentGreen/10 border border-accentGreen/30 text-xs sm:text-sm text-gray-200 leading-relaxed">
+                        ${opc.impacto}
+                    </div>
+                    <div class="flex justify-end gap-3 pt-2">
+                        ${casoIndex < casos.length - 1 ? 
+                            `<button onclick="siguienteCaso()" class="bg-accentGreen hover:bg-accentHover text-white px-4 py-2 rounded-lg font-bold text-xs transition-all">Siguiente Caso <i class="fa-solid fa-arrow-right"></i></button>` :
+                            `<button onclick="reiniciarSimulador()" class="bg-cardBg border border-borderDark hover:bg-borderDark text-white px-4 py-2 rounded-lg font-bold text-xs transition-all"><i class="fa-solid fa-rotate"></i> Reiniciar Simulador</button>`
+                        }
+                    </div>
+                </div>
+            `;
+        }
+
+        function siguienteCaso() {
+            casoIndex++;
+            cargarCaso();
+        }
+
+        function reiniciarSimulador() {
+            casoIndex = 0;
+            cargarCaso();
+        }
+
+        // === FILTRO MATRIZ OBJETIVOS ===
+        function filtrarObjetivos(categoria) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => {
+                b.classList.remove('bg-accentGreen', 'text-white', 'active');
+                b.classList.add('bg-cardBg', 'text-gray-300');
+            });
+
+            event.target.classList.remove('bg-cardBg', 'text-gray-300');
+            event.target.classList.add('bg-accentGreen', 'text-white', 'active');
+
+            const cards = document.querySelectorAll('.obj-card');
+            cards.forEach(card => {
+                if(categoria === 'todos' || card.classList.contains(categoria)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // === LOCALSTORAGE BITÁCORA ===
+        const bitacoraForm = document.getElementById('bitacoraForm');
+        const listaCompromisos = document.getElementById('listaCompromisos');
+
+        function obtenerNotas() {
+            return JSON.parse(localStorage.getItem('ecoConducta_notas') || '[]');
+        }
+
+        function guardarNotas(notas) {
+            localStorage.setItem('ecoConducta_notas', JSON.stringify(notas));
+        }
+
+        function renderizarBitacora() {
+            const notas = obtenerNotas();
+            if(notas.length === 0) {
+                listaCompromisos.innerHTML = `
+                    <div class="text-center py-6 border border-dashed border-borderDark rounded-xl text-gray-500 text-xs">
+                        No hay compromisos registrados aún. Agrega el primero arriba.
+                    </div>
+                `;
+                return;
+            }
+
+            listaCompromisos.innerHTML = notas.map((n, i) => `
+                <div class="bg-darkBg border border-borderDark p-4 rounded-xl flex justify-between items-start gap-4 hover:border-accentGreen/30 transition-all">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-white font-bold text-sm">${n.titulo}</span>
+                            <span class="text-[10px] text-gray-500 bg-cardBg px-2 py-0.5 rounded border border-borderDark">${n.fecha}</span>
+                        </div>
+                        <p class="text-xs text-gray-300">${n.descripcion}</p>
+                    </div>
+                    <button onclick="eliminarNota(${i})" class="text-gray-500 hover:text-red-400 text-xs p-1 transition-colors" title="Eliminar nota">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        bitacoraForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const titulo = document.getElementById('titCompromiso').value.trim();
+            const descripcion = document.getElementById('descCompromiso').value.trim();
+
+            if(!titulo || !descripcion) return;
+
+            const notas = obtenerNotas();
+            const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+
+            notas.unshift({ titulo, descripcion, fecha });
+            guardarNotas(notas);
+            renderizarBitacora();
+
+            bitacoraForm.reset();
+        });
+
+        function eliminarNota(index) {
+            const notas = obtenerNotas();
+            notas.splice(index, 1);
+            guardarNotas(notas);
+            renderizarBitacora();
+        }
+
+        // Inicializar
+        window.onload = function() {
+            cargarCaso();
+            renderizarBitacora();
+        };
+    </script>
+</body>
+</html>
